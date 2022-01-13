@@ -1,57 +1,89 @@
-import sys
+'''import os
 
-products = []
+def betolt_szotarak_szotaraba(tarolo):
+
+    fajl = open(file="Terméklista.csv", mode="tr")
+    sorok = fajl.readlines()
+    fajl.close()
+
+    del sorok[0]
+
+    for sor in sorok:
+        mezok = sor.split(";")
+
+        uj_termek = {}
+        uj_termek["kategoria"] = mezok[1]  # kategória
+        uj_termek["gyarto"] = mezok[2]  # gyártó
+        uj_termek["termeknev"] = mezok[3]  # terméknév
+        uj_termek["ar"] = int(mezok[4])  # ár
+        uj_termek["garancia"] = int(mezok[5])  # garancia
+
+        tarolo[mezok[0]] = uj_termek  # cikkszám
+
+def osszegez(tetelek):
+    szum=0
+    # ???
+    return szum
+
+def letezo_termek(tarolo, cikkszam):
+    van_ilyen=False
+    # ???
+    #  Mikor teljesül, az hogy:   van_ilyen=True
+    return van_ilyen
+
+szotarak_szotara = {}
+betolt_szotarak_szotaraba(szotarak_szotara)
+
+nyugta_tetelei = []
+
+os.system('cls')
+keresett_cikkszam = "_"
+while keresett_cikkszam != "":
+
+    print(f"Eddigi tételek száma: {len(nyugta_tetelei)} db, értékük : {osszegez(nyugta_tetelei)} Ft")
+
+    keresett_cikkszam = input("\nKérem a termék cikkszámát! :")
+    if keresett_cikkszam == "":  # befejezés
+        break
+
+    if letezo_termek(szotarak_szotara, keresett_cikkszam):
+#    if letezo_termek(listaban_szotarak, keresett_cikkszam):
+#    if letezo_termek(szotarak_szotara, keresett_cikkszam):
+        mennyiseg = int(input("\nKérem az eladási mennyiséget! :"))
+        eladasi_ar = int(input("Kérem az eladási árat! :"))
+        nyugta_tetelei.append([keresett_cikkszam, mennyiseg, eladasi_ar])
+    else:
+        print("\nHIBA: Nem létező cikkszám!")
+
+print(nyugta_tetelei)'''
+
+import eel
+from random import randint
+
+eel.init("web")
 
 
-def read_from_file(file_name, storage):
-    f = open(file_name, "r")
-    for row in f:
-        storage.append(row.strip())
-    f.close()
-    del storage[0]
+# Exposing the random_python function to javascript
+@eel.expose
+def read_from_file():
+    tarolo = {}
+    fajl = open(file="Terméklista.csv", mode="tr")
+    sorok = fajl.readlines()
+    fajl.close()
 
+    del sorok[0]
 
-def get_memories(storage):
-    memories_list = []
-    for product in storage:
-        products = product.split(";")
-        if products[1] == "Memória":
-            memories_list.append(product)
-    return memories_list
+    for sor in sorok:
+        mezok = sor.split(";")
 
+        uj_termek = {}
+        uj_termek["kategoria"] = mezok[1]  # kategória
+        uj_termek["gyarto"] = mezok[2]  # gyártó
+        uj_termek["termeknev"] = mezok[3]  # terméknév
+        uj_termek["ar"] = int(mezok[4])  # ár
+        uj_termek["garancia"] = int(mezok[5])  # garancia
 
-# 1. Feladat
-def pieces_of_products(storage, manufacturer):
-    products = [product.split(";") for product in storage if product.split(";")[2].lower() == manufacturer.lower()]
-    return len(products)
-
-
-# 2. Feladat
-def types_of_products(storage, manufacturer):
-    products = {product.split(";")[1] for product in storage if product.split(";")[2].lower() == manufacturer.lower()}
-    return products
-
-# 3. Feladat
-def product_list_with_price(storage, manufacturer, min=0, max=sys.maxsize):
-    # a map() függvénnyel redukálom ki a nem szükséges elemeket, ami a 2, 3, 4 indexű
-    products = [list(map(product.split(";").__getitem__, [2,3,4])) for product in storage if int(product.split(";")[4]) < max and int(product.split(";")[4]) > min and product.split(";")[2].lower() == manufacturer.lower()]
-    return products
-
-# Főprogram
-read_from_file("Terméklista.csv", products)
-memories = get_memories(products)
-
-manufacturer = input("Kérem a gyártó nevét! :")
-print(" DEMÓ : def pieces_of_products(storage, manufacturer) ".center(100, '─'))
-print(f"A {manufacturer} termékeinek száma: {pieces_of_products(products, manufacturer)}")
-print()
-print(" DEMÓ : def types_of_prdocuts(storage, manufacturer) ".center(100, '─'))
-print(f"A {manufacturer} termékfajtái: {types_of_products(products, manufacturer)}")
-print()
-print(" DEMÓ : def product_list_with_price(storage, manufacturer, min=0, max=sys.maxsize) ".center(100, '─'))
-min_price = int(input("Adja meg az alsó határt! :"))
-max_price = int(input("Adja meg a felső határt! :"))
-kepernyo_lista = product_list_with_price(products, manufacturer, min_price, max_price)
-print(f"{len(kepernyo_lista)} db termék esik a megadott ársávba!")
-for row in kepernyo_lista:
-    print(row[0].rjust(14, '_') + " : " + row[1].ljust(160, '_') + " - " + str(row[2]).rjust(10, '.') + " Ft")
+        tarolo[mezok[0]] = uj_termek  # cikkszám
+    return tarolo
+# Start the index.html file
+eel.start("index.html")
