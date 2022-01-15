@@ -14,25 +14,48 @@
     </div>
     <div class="container">
         <form>
-            <div class="form-control">
-                <input type="text" class="form-input" placeholder="Gépelje be a cikkszámot...">
+            <div class="product-list">
+                <div class="form-control">
+                    <select class="select-input" onchange="changeSelectValue(this)">
+                        <option value="start">--Kérem válasszon az alábbiak közül!--</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <button type="submit" id="save">Hozzáadás</button>
+                </div>
             </div>
-            <div class="form-control">
-                <button type="submit" class="btn" id="save">Save</button>
+            <div class="products">
+                <div class="inputs">
+                    <div class="form-control">
+                        <label for="db">Termék eladási mennyisége (db)</label>
+                        <input type="number" id="db">
+                    </div>
+                    <div class="form-control">
+                        <label for="price">Termék eladási ára (Ft)</label>
+                        <input type="number" id="price">
+                    </div>
+                </div>
+
+                <button type="submit" class="createBtn showProducts" id="showProducts" onclick="showProducts()">Tovább a hozzáadott termékekhez</button>
+
+                <div class="added-products">
+                    <!--<div class="product">
+                        <div class="product-title">
+                            <h2>Cikszám: 97365 &nbsp; Mennyiség: 4 db &nbsp; Egységár: 40000 Ft</h2>
+                        </div>
+                        <div class="product-events">
+                            <i class="fas fa-trash" title="Delete todo"></i>
+                        </div>
+                    </div>-->
+                </div>
+
+                <div class="product-summary">
+                    <h2>Összesen: <span class="pieceDb"></span> db termék / <span class="priceDb"></span> Ft</h2>
+                </div>
+                <button class="createBtn back">Vissza</button>
+                <button class="createBtn receipt">Nyugta elkészítése</button>
             </div>
         </form>
-        <div class="todos">
-            <!--<div class="todo">
-                <div class="todo-title">
-                    <h2>Do my homework.</h2>
-                </div>
-                <div class="todo-events">
-                    <i class="fas fa-check" title="Mark as ready"></i>
-                    <i class="fas fa-times" title="Mark as unready"></i>
-                    <i class="fas fa-trash" title="Delete todo"></i>
-                </div>
-            </div>-->
-        </div>
     </div>
 
     <script type="text/javascript" src="../eel.js"></script>

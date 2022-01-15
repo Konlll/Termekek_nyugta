@@ -31,12 +31,38 @@ body{
     padding: 30px;
 }
 
-form{
+label{
+    font-size: 20px;
+    color: #fff;
+}
+
+.product-list{
     display: flex;
 }
 
-.form-control:first-child{
+.product-list .form-control:first-child{
     width: 80%;
+}
+
+.form-control select{
+    height: 50px;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 10px;
+    border-radius: 20px;
+    transition: 0.1s ease;
+}
+
+.form-control select option{
+    color: #000;
+}
+
+.form-control select:focus{
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    transition: 0.1s ease;
 }
 
 .form-control input{
@@ -56,7 +82,7 @@ form{
     transition: 0.1s ease;
 }
 
-.form-control:last-child{
+.product-list .form-control:last-child{
     width: 18%;
     margin-left: 2%;
 }
@@ -80,11 +106,19 @@ form{
     cursor: pointer;
 }
 
-.todos{
+.products{
     margin-top: 60px;
 }
 
-.todo{
+.products .form-control {
+    margin: 30px 0;
+}
+
+.products .inputs{
+    display: none;
+}
+
+.product{
     display: flex;
     justify-content: space-between;
     background-color: #fff;
@@ -93,31 +127,55 @@ form{
     margin-bottom: 20px;
 }
 
-.todo .todo-events i{
+.product .product-events i{
     font-size: 25px;
     margin-right: 10px;
     cursor: pointer;
 }
 
-.todo .todo-events i.fa-check{
-    color: rgb(2, 155, 2);
-}
-.todo .todo-events i.fa-times{
-    color: #ff0000;
-}
-.todo .todo-events i.fa-trash{
-    color: #000;
-}
-
-.todo.ready{
-    background-color: rgba(2, 155, 2, 0.5);
+.product-summary{
+    display: none;
+    border-radius: 5px;
+    border: 1px solid #fff;
     color: #fff;
-}
-.todo.ready .todo-events i.fa-check{
-    color: #fff;
+    padding: 10px;
+    margin-top: 40px;
 }
 
 ::placeholder{
     color: #fff;
     opacity: 0.8;
+}
+
+button.createBtn{
+    height: 50px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(9,83,121,1);
+    color: rgba(9,83,121,1);
+    border-radius: 10px;
+    transition: 0.8s ease;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 60px;
+}
+
+button.showProducts{
+    margin-top: 0;
+}
+
+button.receipt{
+    display: none;
+}
+
+button.back{
+    display: none;
+}
+
+button.createBtn:hover{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    transition: 0.8s ease;
+    cursor: pointer;
 }
