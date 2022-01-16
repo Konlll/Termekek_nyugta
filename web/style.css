@@ -179,3 +179,18 @@ button.createBtn:hover{
     transition: 0.8s ease;
     cursor: pointer;
 }
+
+@media(max-width: 1300px){
+    .product-list{
+        flex-direction: column;
+    }
+
+    .product-list .form-control{
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .product-list button{
+        margin-top: 20px;
+    }
+}
